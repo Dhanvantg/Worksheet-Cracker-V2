@@ -1,0 +1,9 @@
+1. What is the difference between append an extend?
+ Append adds an element to the end of a list, while extend adds the elements of one list to the end of another list.
+
+2. Who is shubash chandra bose?
+ Shubash Chandra Bose was an Indian nationalist who fought for the country's independence from British rule. He was one of the most prominent leaders of the Indian independence movement and is considered a hero in India.
+
+3. Give a brief account on the dandi march?
+ The Dandi March was a peaceful protest against the British salt monopoly in India. Led by Mahatma Gandhi, the march began on March 12, 1930, at Sabarmati Ashram in Ahmedabad, and ended on April 6, 1930, at Dandi, a village on the coast of the Arabian Sea in the state of Gujarat. Along the way, Gandhi and his followers picked up salt from the sea to defy the British salt tax. The march was a key moment in the Indian independence movement and helped to bring about the end of British rule in India.
+

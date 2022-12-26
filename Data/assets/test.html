@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST</title>
+    <style>
+    @import url(https://fonts.googleapis.com/css?family=Raleway);
+        body {
+            background-image: url('http://7-themes.com/data_images/out/45/6925698-black-background-design.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            font-family: 'Raleway', sans-serif;
+        }
+        /* Split the screen in half */
+        .split {
+          height: 100%;
+          width: 50%;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          overflow-x: hidden;
+          padding-top: 20px;
+        }
+
+        /* Control the left side */
+        .left {
+          left: 0;
+          background-color: #fffff;
+        }
+
+        /* Control the right side */
+        .right {
+          right: 0;
+          background-color: #111;
+          color: white;
+        }
+
+        /* If you want the content centered horizontally and vertically */
+        .centered {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+        }
+
+        /* Style the image inside the centered container, if needed */
+        .centered img {
+          width: 150px;
+          border-radius: 50%;
+        }
+
+        #question {
+            width: 350px;
+            height: 150px;
+            border-radius: 10%;
+        }
+        .up {
+            position: relative;
+            top: 4%;
+            left: 50%;
+            text-align: center;
+            transform: translate(-50%, -50%);
+        }
+
+        .but {
+          align-items: center;
+          background-color: #fee6e3;
+          border: 2px solid #111;
+          border-radius: 8px;
+          box-sizing: border-box;
+          color: #111;
+          cursor: pointer;
+          display: flex;
+          font-family: Inter,sans-serif;
+          font-size: 16px;
+          height: 48px;
+          justify-content: center;
+          line-height: 24px;
+          max-width: 100%;
+          padding: 0 25px;
+          position: relative;
+          text-align: center;
+          text-decoration: none;
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+          top: 50px;
+          left: 38%;
+        }
+
+        .but:after {
+          background-color: #111;
+          border-radius: 8px;
+          content: "";
+          display: block;
+          height: 48px;
+          left: 0;
+          width: 100%;
+          position: absolute;
+          top: -2px;
+          transform: translate(8px, 8px);
+          transition: transform .2s ease-out;
+          z-index: -1;
+        }
+
+        .but:hover:after {
+          transform: translate(0, 0);
+        }
+
+        .but:active {
+          background-color: #ffdeda;
+          outline: 0;
+        }
+
+        .but:hover {
+          outline: 0;
+        }
+
+        @media (min-width: 768px) {
+          .but {
+            padding: 0 40px;
+          }
+        }
+    #paper {
+        color:#FFF;
+        font-size:20px;
+    }
+    #margin {
+        margin-left:12px;
+        margin-bottom:20px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+    }
+    #text {
+        width:576px;
+        overflow:hidden;
+        background-color:#FFF;
+        color:#222;
+        font-family:Courier, monospace;
+        font-weight:normal;
+        font-size:24px;
+        resize:none;
+        line-height:40px;
+        padding-left:100px;
+        position: relative;
+        left: -5%;
+        padding-right:100px;
+        padding-top:45px;
+        padding-bottom:34px;
+        background-image:url(https://static.tumblr.com/maopbtg/E9Bmgtoht/lines.png), url(https://static.tumblr.com/maopbtg/nBUmgtogx/paper.png);
+        background-repeat:repeat-y, repeat;
+        -webkit-border-radius:12px;
+        border-radius:12px;
+        -webkit-box-shadow: 0px 2px 14px #000;
+        box-shadow: 0px 2px 14px #000;
+        border-top:1px solid #FFF;
+        border-bottom:1px solid #FFF;
+    }
+    #title {
+        background-color:transparent;
+        border-bottom:3px solid #FFF;
+        color:#FFF;
+        font-size:20px;
+        font-family:Courier, monospace;
+        height:28px;
+        font-weight:bold;
+        width:220px;
+    }
+    #wrapper {
+        width:700px;
+        height:auto;
+        margin-left:auto;
+        margin-right:auto;
+        margin-top:24px;
+        margin-bottom:100px;
+    }
+    content {
+        width: 50vmin;
+        height: 50vmin;
+        position: relative
+    }
+    .list-choice{
+      width:300px;
+      margin:1em auto;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0px 2px 14px #000;
+    }
+    .list-choice input[type="radio"]{
+      position:absolute;
+      left:-9999px;
+    }
+
+    .list-choice-title {
+    width: 100%;
+    display: block;
+    background: #D8D8D8;
+    text-align: center;
+    padding: 0.55em 1em;
+    box-sizing: border-box;
+    color: #000;
+    text-shadow: 0 1px 0 #CACACA;
+    border-radius: 0.2em;
+    }
+    .list-choice:hover .list-choice-title {
+    border-radius:0.2em 0.2em 0 0;
+    }
+    .list-choice-objects label:nth-last-of-type(1) span{
+      border-radius:0 0 0.2em 0.2em;
+    }
+    .list-choice input[type="radio"] + span {
+    color: #000;
+    background: #D8D8D8;
+    padding: 0.55em 1em;
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 100%;
+    }
+    .list-choice-objects {
+    position: absolute;
+    top: 0;
+    padding-top: 2.1em;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    max-height: 0;
+    }
+    .list-choice:hover .list-choice-objects  input[type="radio"] + span {
+    position: relative;
+    top: 0;
+    transition: all 250ms ease-in-out;
+    box-shadow: 0px 2px 14px #000;
+    }
+    .list-choice:hover input[type="radio"] + span:hover {
+    background:#BBB;
+    }
+    .list-choice:hover input[type="radio"]:checked + span:hover {
+    background:#74D68E;
+    }
+    .list-choice input[type="radio"]:checked + span {
+    background: #74D68E;
+    position: absolute;
+    top: 0em;
+    border-radius: 0.2em;
+    }
+    .list-choice:hover input[type="radio"]:checked + span {
+    border-radius: 0;
+    }
+    .list-choice:hover .list-choice-objects label:nth-last-of-type(1) input[type="radio"]:checked + span{
+      border-radius:0 0 0.2em 0.2em;
+    }
+
+    .list-choice:hover .list-choice-objects {
+        max-height: 540px;
+    }
+    .sec{
+        font-size: 40px;
+        font-weight: 900;
+    }
+
+
+    </style>
+</head>
+<body>
+<script>
+    $(document).ready(function(){
+  $('#title').focus();
+    $('#text').autosize();
+});
+</script>
+<div class="split left">
+    <div class="up">
+      <div class="sec">INPUT</div>
+    </div>
+  <div class="centered">
+      <div id="wrapper">
+        <form id="paper" method="POST" action="/submit">
+            <textarea placeholder="Enter Questions." id="text" name="text" rows="4" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; "></textarea>
+            <br><br><br>
+            <div class="list-choice">
+              <div class="list-choice-title">Select Colour</div>
+              <div class="list-choice-objects">
+                <label>
+                  <input type="radio" name="color" value="Coloured"/><span>Multi-Colour</span>
+                </label>
+                <label>
+                  <input type="radio" name="color" value="BW"/><span>Black & White</span>
+                </label>
+              </div>
+            </div>
+            <br>
+        </form>
+            <button class="but" id="but" type="submit" form="paper">GENERATE!</button>
+      </div>
+  </div>
+</div>
+
+<div class="split right">
+  <div class="centered">
+        <div class="sec">PDF VIEWER</div><br>
+        <iframe src="/viewer" width="820" height="900"></iframe>
+  </div>
+</div>
+</body>
+</html>
