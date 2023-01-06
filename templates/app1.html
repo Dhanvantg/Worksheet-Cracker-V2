@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Saul The Solver</title>
+    <style>
+    @import url(https://fonts.googleapis.com/css?family=Raleway);
+    @import url('https://fonts.googleapis.com/css?family=Ubuntu:300,700');
+        body {
+            background: radial-gradient(#481C1C, #1B1B1B);
+            font-family: 'Raleway', sans-serif;
+            overflow-y: hidden;
+        }
+        /* Split the screen in half */
+        .split {
+          height: 100%;
+          width: 50%;
+          position: fixed;
+          z-index: 1;
+          top: 10px;
+          overflow-x: hidden;
+          padding-top: 20px;
+        }
+
+        /* Control the left side */
+        .left {
+          left: 0;
+        }
+
+        /* Control the right side */
+        .right {
+          right: 0;
+          color: white;
+        }
+
+        /* If you want the content centered horizontally and vertically */
+        .centered {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+        }
+
+        /* Style the image inside the centered container, if needed */
+        .centered img {
+          width: 150px;
+          border-radius: 50%;
+        }
+
+        #question {
+            width: 350px;
+            height: 150px;
+            border-radius: 10%;
+        }
+        .up {
+            color: white;
+            position: relative;
+            top: 8%;
+            left: 50%;
+            text-align: center;
+            transform: translate(-50%, -50%);
+        }
+
+        .but {
+          align-items: center;
+          background-color: #fee6e3;
+          border: 2px solid #111;
+          border-radius: 8px;
+          box-sizing: border-box;
+          color: #111;
+          cursor: pointer;
+          display: flex;
+          font-family: Inter,sans-serif;
+          font-size: 16px;
+          height: 48px;
+          justify-content: center;
+          line-height: 24px;
+          max-width: 100%;
+          padding: 0 25px;
+          position: relative;
+          text-align: center;
+          text-decoration: none;
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+          top: 150px;
+          left: 38%;
+        }
+
+        .but:after {
+          background-color: #111;
+          border-radius: 8px;
+          content: "";
+          display: block;
+          height: 48px;
+          left: 0;
+          width: 100%;
+          position: absolute;
+          top: -2px;
+          transform: translate(8px, 8px);
+          transition: transform .2s ease-out;
+          z-index: -1;
+        }
+
+        .but:hover:after {
+          transform: translate(0, 0);
+        }
+
+        .but:active {
+          background-color: #ffdeda;
+          outline: 0;
+        }
+
+        .but:hover {
+          outline: 0;
+        }
+
+        @media (min-width: 768px) {
+          .but {
+            padding: 0 40px;
+          }
+        }
+    #paper {
+        color:#FFF;
+        font-size:20px;
+    }
+    #margin {
+        margin-left:12px;
+        margin-bottom:20px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+    }
+    #text {
+        width:576px;
+        background-color:#FFF;
+        color:#222;
+        overflow: scroll;
+        font-family:Courier, monospace;
+        font-weight:normal;
+        font-size:24px;
+        resize:none;
+        line-height:40px;
+        padding-left:100px;
+        position: relative;
+        left: -5%;
+        padding-right:100px;
+        padding-top:45px;
+        padding-bottom:34px;
+        background-image:url(https://static.tumblr.com/maopbtg/E9Bmgtoht/lines.png), url(https://static.tumblr.com/maopbtg/nBUmgtogx/paper.png);
+        background-repeat:repeat-y, repeat;
+        -webkit-border-radius:12px;
+        border-radius:12px;
+        -webkit-box-shadow: 0px 2px 14px #000;
+        box-shadow: 0px 2px 14px #000;
+        border-top:1px solid #FFF;
+        border-bottom:1px solid #FFF;
+    }
+    #title {
+        background-color:transparent;
+        border-bottom:3px solid #FFF;
+        color:#FFF;
+        font-size:20px;
+        font-family:Courier, monospace;
+        height:28px;
+        font-weight:bold;
+        width:220px;
+    }
+    #wrapper {
+        width:700px;
+        height:auto;
+        margin-left:auto;
+        margin-right:auto;
+        margin-top:24px;
+        margin-bottom:100px;
+    }
+    content {
+        width: 50vmin;
+        height: 50vmin;
+        position: relative
+    }
+    .sec{
+        font-size: 40px;
+        font-weight: 900;
+        position: relative;
+    }
+    .logo{
+        position: relative;
+        top: -7px;
+        left: -8px;
+        width:100%;
+        height:15%;
+        border: 8px solid #000;
+        background-color: #000;
+        font-family: Ubuntu;
+        letter-spacing: 10px;
+        font-weight: 800;
+        font-size: 40px;
+        color: white;
+        text-align: center;
+    }
+    #pfp{
+        position: relative;;
+        top: -63px;
+        left: 97%;
+        height: 50px;
+        width: 50px;
+        transition: transform .1s;
+		scale: 1;
+		z-index: 2;
+    }
+    #hide{
+        display: None;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        width: 175px;
+        background: black;
+        color: white;
+        list-style-type: none;
+        text-align: center;
+        z-index: 3;
+        font-size: 20px;
+        font-weight: 650;
+    }
+    #hi{
+        font-size: 18px;
+        font-weight: 550;
+    }
+    #pfp:hover {
+        transform: scale(1.1);
+    }
+    #hide:hover {
+        display: block;
+    }
+    #pfp:hover + #hide {
+        display: block;
+    }
+    a{
+        color: white;
+        text-decoration: None;
+    }
+    a:hover{
+        color: grey;
+        font-size: 22px;
+    }
+    #pop {
+      position: absolute;
+      bottom: -300px;
+      left: 0px;
+      height: 300px;
+      width: 300px;
+      transition: transform .1s;
+      transform: scale(0.75);
+      z-index: 4;
+    }
+    #pop:hover {
+      transform: scale(0.8);
+    }
+
+    @font-face {
+      font-family: 'dan';
+      src: url('{{ url_for('static', filename='fonts/Danwriting.otf') }}')  format('opentype');
+    }
+    .dan {
+      font-family: 'dan', sans-serif;
+      font-size: 30px;
+    }
+
+    @font-face {
+      font-family: 'hw1';
+      src: url('{{ url_for('static', filename='fonts/JustMeAgainDownHere-Regular.ttf') }}')  format('truetype');
+
+    }
+    .hw1 {
+      font-family: 'hw1', sans-serif;
+      font-size: 25px;
+    }
+
+    select {
+        text-align: center;
+      background-color: white; /* Set the background color of the dropdown menu */
+      color: black; /* Set the text color of the options */
+      border: 2px solid black; /* Remove the border */
+      outline: none; /* Remove the outline */
+      appearance: none; /* Remove the default appearance (e.g. arrow) */
+      width: 200px; /* Set the width of the dropdown menu */
+      padding: 10px; /* Add some padding */
+      font-size: 16px; /* Set the font size of the options */
+      border-radius: 10px;
+    }
+
+    /* Style the options */
+    option {
+        font-size: 20px;
+      background-color: black; /* Set the background color of the options */
+      color: white; /* Set the text color of the options */
+      line-height: 30px;
+    }
+
+    /* Style the selected option */
+    option[selected] {
+      background-color: black; /* Set the background color of the selected option */
+      color: white; /* Set the text color of the selected option */
+    }
+
+    /* Style the hover state of the options */
+    option:hover {
+      background-color: black; /* Set the background color of the hovered option */
+      color: white; /* Set the text color of the hovered option */
+    }
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+      display: none;
+    }
+
+    #loading-message {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      position: relative;
+      top: 170px;
+      left: 35px;
+    }
+    .box {
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      overflow: hidden;
+      padding: 25px;
+    }
+
+    .box .b {
+      border-radius: 50%;
+      border-left: 4px solid;
+      border-right: 4px solid;
+      border-top: 4px solid transparent !important;
+      border-bottom: 4px solid transparent !important;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: ro 2s infinite;
+    }
+
+    .box .b1 {
+      border-color: #4A69BD;
+      width: 120px;
+      height: 120px;
+    }
+
+    .box .b2 {
+      border-color: #F6B93B;
+      width: 100px;
+      height: 100px;
+      animation-delay: 0.2s;
+    }
+
+    .box .b3 {
+      border-color: #2ECC71;
+      width: 80px;
+      height: 80px;
+      animation-delay: 0.4s;
+    }
+
+    .box .b4 {
+      border-color: #34495E;
+      width: 60px;
+      height: 60px;
+      animation-delay: 0.6s;
+    }
+
+    @keyframes ro {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      50% {
+        transform: translate(-50%, -50%) rotate(-180deg);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+    }
+</style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <div class="logo">
+        SAUL THE SOLVER
+    </div>
+
+    <img id="pfp" src="https://imgpile.com/images/d14xaX.png"/>
+    <div id="hide">
+      <p id="hi">Hi there,</p>
+      <p id="uname">Username</p>
+        <hr>
+      <p><a href="/logout">Logout</a></p>
+    </div>
+<div class="split left">
+    <div class="up">
+        <div class="sec">EDIT</div>
+    </div>
+
+    <div class="centered">
+        <div id="wrapper">
+            <form id="paper" method="POST" action="/edit">
+                <textarea id="text" name="text" rows="4"
+                          style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; ">{{ session.text }}</textarea>
+                <br><br><br>
+                <div class="drop">
+                <select id="colour" name="colour">
+                    <option value="" disabled selected>Select Colour</option>
+                  <option value="color">Coloured</option>
+                  <option value="BW">Black & White</option>
+                </select>
+                <select id="hw" name="hw">
+                    <option value="" disabled selected>Select Handwriting</option>
+                  <option value="0" class="hw1">Handwriting 1</option>
+                  <option value="1" class="dan">Handwriting 2</option>
+                </select>
+                </div>
+                <br>
+            </form>
+            <button class="but" id="but" type="submit" form="paper">GENERATE!</button>
+        </div>
+    </div>
+</div>
+<div id="loading-screen">
+  <div class="box">
+  <div class="b b1"></div>
+  <div class="b b2"></div>
+  <div class="b b3"></div>
+  <div class="b b4"></div>
+  <div id="loading-message">Generating...</div>
+</div>
+</div>
+<div class="split right">
+    <div class="centered">
+        <div class="sec"><div style="position: relative;top:-16px;">PDF VIEWER</div></div>
+        <iframe src="/viewer" width="820" height="800"></iframe>
+    </div>
+</div>
+<div id="pop">
+	<img src="https://imgpile.com/images/d4ZLrS.png" alt="robo"/>
+</div>
+<script>
+    var data = {
+        key: '{{ session.username }}'
+      };
+    var uname = document.getElementById("uname");
+    uname.innerHTML = data.key;
+    function pop() {
+	  $('#pop').animate({
+		bottom: '0',
+		left: '0'
+	  }, 1000);
+	};
+	setTimeout(pop, 1000);
+	document.getElementById('but').addEventListener('click', function() {
+      document.getElementById('loading-screen').style.display = 'block';
+    });
+</script>
+
+</body>
+</html>
