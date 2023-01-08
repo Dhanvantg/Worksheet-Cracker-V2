@@ -86,19 +86,24 @@ def viewer():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    name, col, hw = request.form['text'], request.form['colour'], request.form['hw']
+    name, col, hw = request.form['text'].replace('-', ' '), request.form['colour'], request.form['hw']
     uname = session['username']
     main.run(name, col, uname, hw, 1)
     return redirect('/')
 
 @app.route('/edit', methods=['POST'])
 def edit():
-    name, col, hw = request.form['text'], request.form['colour'], request.form['hw']
+    name, col, hw = request.form['text'].replace('-', ' '), request.form['colour'], request.form['hw']
     uname = session['username']
     session['text'] = name.replace('\n\n', '\n').replace('\n\n', '\n')
     main.run(name, col, uname, hw, 2)
     return redirect('/')
 
+@app.route('/reset', methods=['POST'])
+def reset():
+    uname = session['username']
+    os.remove('Output/'+uname+'.pdf')
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0')

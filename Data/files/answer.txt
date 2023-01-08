@@ -1,0 +1,9 @@
+1. What is python, explain?
+ Python is a programming language that is widely used in many different application domains. Python is known for its ease of use and readability, and its vast standard library.
+
+2. Explain about lysosome?
+ A lysosome is a membrane-bound organelle found in animal cells. They are spherical vesicles that contain hydrolytic enzymes that can break down many types of biomolecules, including proteins, nucleic acids, and complex carbohydrates.
+
+3. Who is mahatma gandhi?
+ Mahatma Gandhi was an Indian political leader who fought for India's independence from British rule. After years of peaceful protests and civil disobedience, Gandhi helped lead India to independence in 1947. He is also celebrated for his philosophy of nonviolent resistance.
+

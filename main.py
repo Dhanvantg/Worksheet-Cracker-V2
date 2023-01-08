@@ -17,7 +17,7 @@ def chatbot(prompt):
 
 
 def punc(ques):
-    if ques.endswith('?'):
+    if ques[-1] in ('?.!'):
         return ques
     else:
         return ques + '?'
